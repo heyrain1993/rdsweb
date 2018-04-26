@@ -1,0 +1,19 @@
+spring: 
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/rdsweb?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+    password: 123456
+  jpa: 
+    hibernate:
+      ddl-auto: update #设置建表策略；create：每次启动都会创建表，会删除已存在的表；update：如果有数据就不会创建，否则创建
+    show-sql: true #执行SQL时，会在控制台显示
+  jackson:
+    default-property-inclusion: non-null 
+mybatis: 
+  mapper-locations: classpath*:mybatis/*.xml
+  type-aliases-package: com.heyu.rdsweb.model
+  
+logging:
+  level: 
+    com.heyu.rdsweb.dao: DEBUG
