@@ -24,7 +24,7 @@ public class DataEntity extends BaseEntity{
 	
 	protected Date updateDate;
 	
-	protected boolean delFlag;
+	protected String delFlag;
 
 	public String getRemark() {
 		return remark;
@@ -66,11 +66,11 @@ public class DataEntity extends BaseEntity{
 		this.updateDate = updateDate;
 	}
 
-	public boolean getDelFlag() {
+	public String getDelFlag() {
 		return delFlag;
 	}
 
-	public void setDelFlag(boolean delFlag) {
+	public void setDelFlag(String delFlag) {
 		this.delFlag = delFlag;
 	}
 	

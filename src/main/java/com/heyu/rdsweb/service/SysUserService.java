@@ -18,4 +18,9 @@ public class SysUserService {
 		return sysUserDao.findAll();
 	}
 
+	public SysUser findByUsername(String username) {
+		
+		return sysUserDao.findByUsername(username);
+	}
+
 }

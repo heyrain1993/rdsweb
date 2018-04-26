@@ -1,5 +1,5 @@
 spring: 
-  datasource:
+  datasource: #配置数据库连接
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/rdsweb?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
     username: root
@@ -8,12 +8,12 @@ spring:
     hibernate:
       ddl-auto: update #设置建表策略；create：每次启动都会创建表，会删除已存在的表；update：如果有数据就不会创建，否则创建
     show-sql: true #执行SQL时，会在控制台显示
-  jackson:
+  jackson: #配置实体类中为null的字段在json中不返回
     default-property-inclusion: non-null 
-mybatis: 
+mybatis:  #加载mybatis配置文件
   mapper-locations: classpath*:mybatis/*.xml
   type-aliases-package: com.heyu.rdsweb.model
   
 logging:
-  level: 
+  level: #设置执行的SQL在控制台打印
     com.heyu.rdsweb.dao: DEBUG

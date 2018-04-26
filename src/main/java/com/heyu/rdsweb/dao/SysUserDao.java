@@ -3,6 +3,7 @@ package com.heyu.rdsweb.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.heyu.rdsweb.model.SysUser;
 
@@ -55,4 +56,11 @@ public interface SysUserDao {
      * @return
      */
 	public List<SysUser> findAll();
+
+	/**
+	 * 根据用户名查询用户信息
+	 * @param username
+	 * @return
+	 */
+	SysUser findByUsername(@Param("username")String username);
 }
