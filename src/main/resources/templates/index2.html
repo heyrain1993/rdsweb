@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="icon" th:href="@{/images/favicon.ico}" />
+	<script type="text/javascript" th:src="@{/js/jquery/jquery.js}"></script>
+	 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+	<script type="text/javascript" th:src="@{/js/jquery-validation/dist/jquery.validate.min.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/js/bootstrap/css/bootstrap.min.css}" />
+	<script type="text/javascript" th:src="@{/js/bootstrap/js/bootstrap.min.js}"></script>
+	<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="col-xs-12">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="#">菜鸟教程</a>
+						</div>
+						<div>
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="#">iOS</a></li>
+								<li><a href="#">SVN</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" id="dropdownMenu1"> Java <b class="caret"></b>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+										<li role="presentation">
+								            <a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
+								        </li>
+								        <li role="presentation">
+								            <a role="menuitem" tabindex="-1" href="#">数据通信/网络</a>
+								        </li>
+								        <li role="presentation" class="divider"></li>
+								        <li role="presentation">
+								            <a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+								        </li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row-fluid">
+		<div class="col-xs-2">
+			
+			<div class="sidebar">
+            <ul class="nav">
+                <li><a href="index.html">主页面</a></li>
+                <li><a href="form.html">Form库</a></li>
+                <li><a href="message.html">Message库</a></li>
+                <li><a href="ui.html">UI库</a></li>
+                <li><a href="animate.html">Animate库</a></li>
+                <li><a href="carousel.html">Carousel库</a></li>
+                <li><a href="chart.html">Chart库</a></li>
+                <li class="has-sub">
+                    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>首页</a>  
+        <ul id="dashboard-menu" class="nav nav-list collapse ">  
+            <li><a href="/WirelessOrder/home.do?flag=home">报表</a></li>  
+            <li><a href="/WirelessOrder/home.do?flag=grzx">个人中心</a></li>  
+        </ul> 
+                </li>
+            </ul>
+        	</div>
+		</div>
+		<div class="col-xs-10" th:include="table"></div>
+
+	</div>
+	</div>
+	</body>
+</html>

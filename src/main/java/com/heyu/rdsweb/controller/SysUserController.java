@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.heyu.framework.exception.CommonException;
+import com.heyu.framework.exception.PageException;
 import com.heyu.rdsweb.model.SysUser;
 import com.heyu.rdsweb.service.SysUserService;
 
@@ -29,4 +31,20 @@ public class SysUserController {
 		return "error";
 	}
 	
+	@RequestMapping(value = "testjson",method = RequestMethod.GET)
+	public String testJson() throws CommonException {
+		
+		throw new CommonException(1,"错误");
+		
+	}
+	
+	@RequestMapping(value = "testpage",method = RequestMethod.GET)
+	public String testpage() throws PageException {
+		try {
+			
+		} catch (Exception e) {
+			throw new PageException();
+		}
+		throw new PageException();
+	}
 }

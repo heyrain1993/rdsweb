@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.alibaba.fastjson.JSON;
 import com.heyu.rdsweb.model.SysUser;
 
 @Controller
@@ -25,6 +26,7 @@ public class LoginController {
 	@RequestMapping(value = "/login",method = RequestMethod.GET )
 	public String login(Model model) {
 		model.addAttribute("user", new SysUser());
+		//JSON.toJSONString(model);
 		return "login";
 	}
 	
