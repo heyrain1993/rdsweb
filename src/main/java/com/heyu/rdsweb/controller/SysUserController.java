@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,12 +20,27 @@ public class SysUserController {
 	@Autowired
 	private SysUserService sysUserService;
 	
-	@RequestMapping(value = "users",method = RequestMethod.GET)
-	@ResponseBody
-	public List<SysUser> findAllUser() {
-		return sysUserService.findAll();
+	@RequestMapping(value = "userList",method = RequestMethod.GET)
+	public String findAllUser(Model model) {
+		List<SysUser> users = sysUserService.findAll();
+		model.addAttribute("users", users);
+		return "admin/genCode/tableList";
 	}
 	
+	@RequestMapping(value = "userForm",method = RequestMethod.GET)
+	public String addUser() {
+		/*List<SysUser> users = sysUserService.findAll();
+		model.addAttribute("users", users);*/
+		return "admin/genCode/tableForm";
+	}
+	
+	@RequestMapping(value = "user",method = RequestMethod.POST)
+	public String addUser(SysUser user) {
+		sysUserService.addUser(user);
+		/*List<SysUser> users = sysUserService.findAll();
+		model.addAttribute("users", users);*/
+		return "redirect:userList";
+	}
 	
 	@RequestMapping(value = "error",method = RequestMethod.GET)
 	public String error() {

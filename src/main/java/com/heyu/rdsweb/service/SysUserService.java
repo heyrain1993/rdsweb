@@ -1,6 +1,7 @@
 package com.heyu.rdsweb.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,10 @@ public class SysUserService {
 		return sysUserDao.findByUsername(username);
 	}
 
+	
+	public void addUser(SysUser user) {
+		user.setId(UUID.randomUUID().toString());
+		sysUserDao.insert(user);
+		//return sysUserDao.findByUsername(username);
+	}
 }

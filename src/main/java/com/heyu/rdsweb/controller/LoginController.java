@@ -52,7 +52,7 @@ public class LoginController {
 			subject.login(token);
 			System.out.println("index");
 			//登录成功
-			return "index";
+			return "redirect:userList";
 		} catch (AuthenticationException  e) {
 			token.clear();
 			redirectAttributes.addAttribute("message", "用户名或密码不存在");
