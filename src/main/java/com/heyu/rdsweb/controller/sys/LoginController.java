@@ -1,4 +1,4 @@
-package com.heyu.rdsweb.controller;
+package com.heyu.rdsweb.controller.sys;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.alibaba.fastjson.JSON;
 import com.heyu.rdsweb.model.SysUser;
 
 @Controller
@@ -52,7 +49,7 @@ public class LoginController {
 			subject.login(token);
 			System.out.println("index");
 			//登录成功
-			return "redirect:userList";
+			return "redirect:gencode/tables";
 		} catch (AuthenticationException  e) {
 			token.clear();
 			redirectAttributes.addAttribute("message", "用户名或密码不存在");

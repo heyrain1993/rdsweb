@@ -1,4 +1,4 @@
-package com.heyu.rdsweb.controller;
+package com.heyu.rdsweb.controller.sys;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.heyu.framework.exception.CommonException;
 import com.heyu.framework.exception.PageException;
 import com.heyu.rdsweb.model.SysUser;
-import com.heyu.rdsweb.service.SysUserService;
+import com.heyu.rdsweb.service.sys.SysUserService;
 
 @Controller
 public class SysUserController {

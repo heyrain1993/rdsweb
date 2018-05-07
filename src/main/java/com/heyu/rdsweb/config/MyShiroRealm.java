@@ -10,7 +10,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.heyu.rdsweb.model.SysUser;
-import com.heyu.rdsweb.service.SysUserService;
+import com.heyu.rdsweb.service.sys.SysUserService;
 
 public class MyShiroRealm extends AuthorizingRealm{
 
