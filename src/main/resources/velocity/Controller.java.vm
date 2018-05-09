@@ -55,6 +55,7 @@ public class ${className}Controller {
         return R.ok().put("${classname}", ${classname});
     }
 
+
     /**
      * 保存
      */

@@ -11,8 +11,7 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import javax.servlet.http.HttpServletResponse;
-
+import com.heyu.framework.utils.StringUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -21,14 +20,12 @@ import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.heyu.rdsweb.config.GeneratorConfig;
 import com.heyu.rdsweb.dao.CodeGeneratorDao;
 import com.heyu.rdsweb.model.ColumnEntity;
 import com.heyu.rdsweb.model.TableEntity;
-import com.heyu.rdsweb.utils.DateUtils;
-import com.heyu.rdsweb.utils.PropertiesUtils;
-import com.heyu.rdsweb.utils.StringUtils;
+import com.heyu.framework.utils.DateUtils;
+import com.heyu.framework.utils.PropertiesUtils;
+import com.heyu.rdsweb.controller.GeneratorConfig;
 
 @Service
 public class CodeGeneratorService {
@@ -56,7 +53,7 @@ public class CodeGeneratorService {
 		return codeGeneratorDao.findColumnEntity(tableName);
 	}
 
-	public void download(String tableName, GeneratorConfig config, ZipOutputStream zip) {
+	public void download(String tableName, com.heyu.rdsweb.config.GeneratorConfig config, ZipOutputStream zip) {
 		List<TableEntity> tableEntitys = codeGeneratorDao.findTableList(tableName);
 		TableEntity tableEntity = null;
 		if(tableEntitys != null && tableEntitys.size() != 0) {

@@ -1,8 +1,9 @@
 package com.heyu.rdsweb.model;
 
-import com.heyu.rdsweb.base.DataEntity;
 
-public class SysUser extends DataEntity{
+import com.heyu.framework.entity.DataEntity;
+
+public class SysUser extends DataEntity {
 	
     /**
 	 * 实现序列化
