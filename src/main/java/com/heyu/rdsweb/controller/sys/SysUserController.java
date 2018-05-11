@@ -22,9 +22,9 @@ public class SysUserController {
 	
 	@RequestMapping(value = "userList",method = RequestMethod.GET)
 	public String findAllUser(Model model) {
-		List<SysUser> users = sysUserService.findAll();
+		List<SysUser> users = sysUserService.findPage(new SysUser());
 		model.addAttribute("users", users);
-		return "admin/genCode/tableList";
+		return "admin/genCode/sysUserList";
 	}
 	
 	@RequestMapping(value = "userForm",method = RequestMethod.GET)

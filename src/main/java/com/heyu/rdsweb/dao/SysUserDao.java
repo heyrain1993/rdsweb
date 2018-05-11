@@ -2,6 +2,7 @@ package com.heyu.rdsweb.dao;
 
 import java.util.List;
 
+import com.heyu.framework.entity.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -63,4 +64,6 @@ public interface SysUserDao {
 	 * @return
 	 */
 	SysUser findByUsername(@Param("username")String username);
+
+	public List<SysUser> findPage(SysUser sysUser);
 }

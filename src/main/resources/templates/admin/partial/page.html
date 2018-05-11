@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+	<!--<ul class="pagination" th:fragment="page">
+		<li><a href="#">上一页</a></li>
+		<li class="active"><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li><a href="#">下一页</a></li>
+		<li><label>
+			<select id="pageSize" onchange="research()" class="form-control">
+				<option value="5">5条/页</option>
+				<option selected="selected" value="10">10条/页</option>
+				<option value="20">20条/页</option>
+				<option value="30">30条/页</option>
+			</select>
+		</label>
+		</li>
+		<li>
+			跳至<input type="text" class="input-sm">页
+			<input type="button" class= "btn btn-default" onclick="" value="GO" />
+		</li>
+	</ul>-->
+
+	<!--bootstrap-paginator分页插件-->
+	<div id="example" th:fragment="page"></div>
+	<script type="text/javascript">
+		$(function () {
+			var options={
+				alignment:'center',
+				currentPage:'1',
+				numberOfPages:'5',
+				totalPages:'10'
+
+			};
+			$('#example').bootstrapPaginator(options);
+        });
+	</script>
+</body>
+</html>

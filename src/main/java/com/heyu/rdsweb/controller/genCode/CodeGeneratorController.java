@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.heyu.rdsweb.controller.GeneratorConfig;
+import com.heyu.rdsweb.config.GeneratorConfig;
 import com.heyu.rdsweb.model.ColumnEntity;
 import com.heyu.rdsweb.model.TableEntity;
 import com.heyu.rdsweb.service.genCode.CodeGeneratorService;

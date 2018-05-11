@@ -15,12 +15,12 @@
     <result column="u_update_date" jdbcType="TIMESTAMP" property="updateDate" />
     <result column="u_remark" jdbcType="VARCHAR" property="remark" />
     <result column="u_del_flag" jdbcType="VARCHAR" property="delFlag" />
-    <association  property="createBy" javaType="com.heyu.rdsweb.model.SysUser" >
+    <!--<association  property="createBy" javaType="com.heyu.rdsweb.model.SysUser" >
     	<id property="id" column="u_create_by"/>
-    </association>
-     <association  property="updateBy" javaType="com.heyu.rdsweb.model.SysUser" >
+    </association>-->
+     <!--<association  property="updateBy" javaType="com.heyu.rdsweb.model.SysUser" >
     	<id property="id" column="u_update_by"/>
-    </association>
+    </association>-->
   </resultMap>
   <sql id="Base_Column_List">
     u.id as u_id, u.real_name as u_real_name, u.username as u_username, u.password as u_password, 
@@ -41,7 +41,14 @@
     <include refid="Base_Column_List" />
     from sys_user u
   </select>
-  
+
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user u
+
+  </select>
+
     <select id="findByUsername" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

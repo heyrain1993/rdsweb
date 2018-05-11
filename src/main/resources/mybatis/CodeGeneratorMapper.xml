@@ -5,7 +5,7 @@
     <id column="table_name" jdbcType="VARCHAR" property="tableName" />
     <result column="engine" jdbcType="VARCHAR" property="engine" />
     <result column="t_comment" jdbcType="VARCHAR" property="comment" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createDate" />
     <collection  property="columns" ofType="com.heyu.rdsweb.model.ColumnEntity">
     	<result column="column_name" property="columnName" />
     	<result column="column_type" property="columnType" />

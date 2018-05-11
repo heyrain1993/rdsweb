@@ -11,7 +11,8 @@
 	th:href="@{/js/bootstrap/css/bootstrap.min.css}" />
 <script type="text/javascript"
 	th:src="@{/js/bootstrap/js/bootstrap.min.js}"></script>
-
+	<script type="text/javascript"
+			th:src="@{/js/paginator/bootstrap-paginator.js}"></script>
 <title>Insert title here</title>
 
 </head>
@@ -61,12 +62,12 @@
 									</tr>
 								</thead>
 								<tbody >
-									<tr th:each="table: ${tables}">
-										<td th:text="${table.tableName}">1</td>
-										<td th:text="${table.engine}">TB - Monthly</td>
-										<td th:text="${table.comment}">01/04/2012</td>
-										<td th:text="${#dates.format(table.createDate,'yyyy-MM-dd HH:mm:ss')}">Default</td>
-										<td> <a type="button" class="btn btn-primary" th:href="@{'/gencode/tableInfo?tableName=' + ${table.tableName}}" >详情</a></td>
+									<tr th:each="user: ${users}">
+										<td th:text="${user.username}">1</td>
+										<td th:text="${user.password}">TB - Monthly</td>
+										<td th:text="${user.email}">01/04/2012</td>
+										<td th:text="${#dates.format(user.createDate,'yyyy-MM-dd HH:mm:ss')}">Default</td>
+										<td> <a type="button" class="btn btn-primary" th:href="@{'/gencode/tableInfo?tableName=' + ${user.id}}" >详情</a></td>
 									</tr>
 									
 								</tbody>
@@ -77,6 +78,7 @@
 			</div>
 
 		</div>
+		<div class="row-fluid" th:insert="~{admin/partial/page :: page}"></div>
 	</div>
 </body>
 </html>

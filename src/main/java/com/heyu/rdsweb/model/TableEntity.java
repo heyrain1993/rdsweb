@@ -19,7 +19,7 @@ public class TableEntity {
 	private String comment;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
+	private Date createDate;
 	//private ColumnEntity primaryK;
 	
 	private List<ColumnEntity> columns;
@@ -68,12 +68,12 @@ public class TableEntity {
 		this.className = className;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 	public String getClassname() {
