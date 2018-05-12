@@ -1,10 +1,8 @@
 package com.heyu.rdsweb.controller.sys;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.heyu.framework.BaseController;
 import com.heyu.framework.entity.Page;
-import com.heyu.framework.utils.ValidatorUtil;
 import com.heyu.rdsweb.model.Role;
 import com.heyu.rdsweb.service.sys.RoleService;
 
@@ -62,9 +59,7 @@ public class RoleController extends BaseController{
 	@RequestMapping(value="form",method=RequestMethod.POST)
 	public String form(@RequestParam("id")String id,Model model) {
 		Role role = new Role();
-		if(id != null) {
-			role = roleService.findById(id);
-		}
+
 		model.addAttribute("role",role);
 		return "admin/sys/roleForm";
 	}
@@ -76,13 +71,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping(value="save",method=RequestMethod.POST)
 	public String save(Role role) {
-		ValidatorUtil.validateEntity(role);
-		
-		if(role.isNewRecord()) {
-			role.preInsert();
-		}else {
-			role.preUpdate();
-		}
+
 		roleService.save(role);
 		return "redirect:/role/list";
 	}
