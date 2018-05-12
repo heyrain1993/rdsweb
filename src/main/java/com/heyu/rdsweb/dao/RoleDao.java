@@ -1,4 +1,7 @@
 package com.heyu.rdsweb.dao;
 
-public interface RoleDao {
+import com.heyu.framework.dao.CurdDao;
+import com.heyu.rdsweb.model.Role;
+
+public interface RoleDao extends CurdDao<Role>{
 }
