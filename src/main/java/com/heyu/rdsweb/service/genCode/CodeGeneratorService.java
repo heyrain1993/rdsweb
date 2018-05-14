@@ -61,14 +61,15 @@ public class CodeGeneratorService {
 			return;
 		}
 		tableEntity.setClassName(StringUtils.firstToUpper(StringUtils.underlineToHump(tableEntity.getTableName())));
-		
+		tableEntity.setClassname(StringUtils.underlineToHump(tableEntity.getTableName()));
 		//设置列信息
 		List<ColumnEntity> columns = tableEntity.getColumns();
 		if(columns == null || columns.size() == 0) {
 			return;
 		}
 		for(ColumnEntity column:columns) {
-			column.setAttrName(StringUtils.underlineToHump(column.getColumnName()));
+			column.setAttrname(StringUtils.underlineToHump(column.getColumnName()));
+			column.setAttrName(StringUtils.firstToUpper(StringUtils.underlineToHump(column.getColumnName())));
 			column.setAttrType(PropertiesUtils.getString(column.getColumnType(), "generateProp.properties"));
 		}
 		
@@ -84,9 +85,9 @@ public class CodeGeneratorService {
 		map.put("classname", tableEntity.getClassname());
 		//map.put("pathName", tableEntity.getClassname().toLowerCase());
 		map.put("columns", tableEntity.getColumns());
-		map.put("mainPath", config.getBasePackage());
-		map.put("package", config.getModuleName());
-		map.put("moduleName", config.getEmail());
+		map.put("package", config.getBasePackage());
+		map.put("moduleName", config.getModuleName());
+		map.put("email", config.getEmail());
 		map.put("author", config.getAuthor());
 		map.put("datetime",DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN));
 		VelocityContext context = new VelocityContext(map);
@@ -97,12 +98,9 @@ public class CodeGeneratorService {
 		templates.add("velocity/Dao.java.vm");
 		templates.add("velocity/Dao.xml.vm");
 		templates.add("velocity/Service.java.vm");
-		templates.add("velocity/ServiceImpl.java.vm");
 		templates.add("velocity/Controller.java.vm");
 		templates.add("velocity/list.html.vm");
-		templates.add("velocity/list.js.vm");
-		templates.add("velocity/menu.sql.vm");
-		
+		templates.add("velocity/form.html.vm");
 		for(String template:templates) {
 			StringWriter writer = new StringWriter();
 			Template  t = engine.getTemplate(template);
@@ -138,10 +136,6 @@ public class CodeGeneratorService {
 			return packagePath + "service" + File.separator + className + "Service.java";
 		}
 
-		if (template.contains("ServiceImpl.java.vm" )) {
-			return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
-		}
-
 		if (template.contains("Controller.java.vm" )) {
 			return packagePath + "controller" + File.separator + className + "Controller.java";
 		}
@@ -155,13 +149,9 @@ public class CodeGeneratorService {
 					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + ".html";
 		}
 
-		if (template.contains("list.js.vm" )) {
-			return "src"+ File.separator + "main" + File.separator + "resources" + File.separator + "statics" + File.separator + "js" + File.separator
-					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + ".js";
-		}
-
-		if (template.contains("menu.sql.vm" )) {
-			return className.toLowerCase() + "_menu.sql";
+		if (template.contains("form.html.vm" )) {
+			return "src"+ File.separator + "main" + File.separator + "resources" + File.separator + "templates" + File.separator 
+					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + ".html";
 		}
 
 		return null;

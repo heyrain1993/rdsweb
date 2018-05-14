@@ -1,93 +1,96 @@
 package ${package}.${moduleName}.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import com.qihai.commerce.framework.utils.ValidatorUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import ${package}.${moduleName}.entity.${className}Entity;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.heyu.framework.BaseController;
+import com.heyu.framework.entity.Page;
+import ${package}.${moduleName}.model.${className};
 import ${package}.${moduleName}.service.${className}Service;
-import com.qihai.commerce.framework.utils.PageUtils;
-import com.qihai.commerce.framework.utils.R;
-
-
-
 /**
  * ${comments}
- *
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
+ *
  */
-@RestController
-@RequestMapping("${moduleName}/${pathName}")
-public class ${className}Controller {
-    @Autowired
-    private ${className}Service ${classname}Service;
+@Controller
+@RequestMapping(value="${moduleName}/${classname}")
+public class ${className}Controller extends BaseController{
+	
+	@Autowired
+	private ${className}Service ${classname}Service;
+	
+	/**
+	 * 根据条件分页查询
+	 * @param request 请求
+	 * @param response 响应
+	 * @param ${classname} 实体类
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="list",method=RequestMethod.POST)
+	public String list(HttpServletRequest request,HttpServletResponse response,${className} ${classname},Model model){
+		Page<${className}> page = new Page<${className}>(request);
+		Page<${className}> result = ${classname}Service.findPage(page,${classname});
+		model.addAttribute("page", result);
+		return "templates/${moduleName}/${classname}List";
+	}
+	
+	/**
+	 * 根据条件查询所有
+	 * @param ${classname} 实体类
+	 * @return
+	 */
+	@RequestMapping(value = "findAll",method=RequestMethod.POST)
+	@ResponseBody
+	public List<${className}> findAll(${className} ${classname}){
+		List<${className}> lists = ${classname}Service.findList(${classname});
+		return lists;
+	}
+	
+	/**
+	 * 根据id查询实体类
+	 * @param id 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="form",method=RequestMethod.POST)
+	public String form(@RequestParam("id")String id,Model model) {
+		${className} ${classname} = new ${className}();
 
-    /**
-     * 列表
-     */
-    @RequestMapping("/list")
-    @RequiresPermissions("${moduleName}:${pathName}:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = ${classname}Service.queryPage(params);
+		model.addAttribute("${classname}",${classname});
+		return "templates/${moduleName}/${classname}Form";
+	}
+	
+	/**
+	 * 保存-使用validate校验
+	 * @param ${classname}
+	 * @return
+	 */
+	@RequestMapping(value="save",method=RequestMethod.POST)
+	public String save(${className} ${classname}) {
 
-        return R.ok().put("page", page);
-    }
-
-
-    /**
-     * 信息
-     */
-    @RequestMapping("/info/{${pk.attrname}}")
-    @RequiresPermissions("${moduleName}:${pathName}:info")
-    public R info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}){
-        ${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
-
-        return R.ok().put("${classname}", ${classname});
-    }
-
-
-    /**
-     * 保存
-     */
-    @RequestMapping("/save")
-    @RequiresPermissions("${moduleName}:${pathName}:save")
-    public R save(@RequestBody ${className}Entity ${classname}){
-        ${classname}Service.insert(${classname});
-
-        return R.ok();
-    }
-
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    @RequiresPermissions("${moduleName}:${pathName}:update")
-    public R update(@RequestBody ${className}Entity ${classname}){
-        ValidatorUtils.validateEntity(${classname});
-        ${classname}Service.updateAllColumnById(${classname});//全部更新
-        
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    @RequiresPermissions("${moduleName}:${pathName}:delete")
-    public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s){
-        ${classname}Service.deleteBatchIds(Arrays.asList(${pk.attrname}s));
-
-        return R.ok();
-    }
-
+		${classname}Service.save(${classname});
+		return "redirect:/${moduleName}/${classname}/list";
+	}
+	
+	/**
+	 * 删除实体类
+	 * @param ${classname}
+	 * @return
+	 */
+	@RequestMapping(value="delete",method=RequestMethod.POST)
+	public String delete(${className} ${classname}) {
+		${classname}Service.delete(${classname});
+		return "redirect:/${moduleName}/${classname}/list";
+	}
+	
 }

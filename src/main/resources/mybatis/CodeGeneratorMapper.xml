@@ -44,7 +44,7 @@
    	
   </sql>
   
-  <select id="findTableList" resultMap="TableBaseResultMap">
+  <select id="findTableList" resultMap="TableBaseResultMap" >
    SELECT  
    <include refid="table_Base_Column_List" />
 	FROM information_schema.`TABLES` i 

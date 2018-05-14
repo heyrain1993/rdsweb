@@ -3,6 +3,7 @@ package com.heyu.rdsweb.service.sys;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.heyu.framework.entity.Page;
 import com.heyu.framework.service.BaseService;
@@ -10,6 +11,7 @@ import com.heyu.framework.utils.ValidatorUtil;
 import com.heyu.rdsweb.dao.RoleDao;
 import com.heyu.rdsweb.model.Role;
 
+@Service
 public class RoleService extends BaseService{
 	@Autowired
 	protected RoleDao roleDao;

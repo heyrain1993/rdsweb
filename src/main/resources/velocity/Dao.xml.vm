@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="${package}.${moduleName}.dao.${className}Dao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="${package}.${moduleName}.entity.${className}Entity" id="${classname}Map">
-#foreach($column in $columns)
-        <result property="${column.attrname}" column="${column.columnName}"/>
-#end
-    </resultMap>
+  <sql id="Base_Column_List">
+  	#foreach($column in $columns)
+    ${tableName}.substring(0,1).${column.columnName} AS ${column.attrname}
+	#end
 
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="${package}.${moduleName}.model.${className}">
+    select 
+    <include refid="Base_Column_List" />
+    from ${tableName} ${tableName}.substring(0,1)
+    where ${tableName}.substring(0,1).id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAll" resultType="${package}.${moduleName}.model.${className}">
+    select 
+    <include refid="Base_Column_List" />
+    from ${tableName} ${tableName}.substring(0,1)
+  </select>
 
-</mapper>
+  <select id="findPage" resultType="${package}.${moduleName}.model.${className}">
+    select
+    <include refid="Base_Column_List" />
+    from ${tableName} ${tableName}.substring(0,1)
+
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ${tableName}
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="${package}.${moduleName}.model.${className}">
+    insert into ${tableName} (	
+    #foreach($column in $columns)
+	if($foreach.hasNext)
+    	${column.columnName},
+    #else
+    	${column.columnName}
+    #end
+    #end
+    	)
+    values (
+	#foreach($column in $columns)
+	#if($foreach.hasNext)
+    	${column.attrname},
+    #else
+    	#{${column.attrname}}
+    #end
+    #end)
+  </insert>
+  
+  <insert id="insertSelective" parameterType="${package}.${moduleName}.model.${className}">
+    insert into ${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+    #foreach($column in $columns)
+      <if test="${column.attrname} != null">
+        ${column.columnName},
+      </if>
+    #end
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+     #foreach($column in $columns)
+      <if test="${column.attrname} != null">
+        ${column.attrname},
+      </if>
+     #end
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="${package}.${moduleName}.model.${className}">
+    update ${tableName}
+    <set>
+    #foreach($column in $columns)
+      <if test="${column.attrname} != null">
+        ${column.columnName} = #{${column.attrname}},
+      </if>
+	#end
+    </set>
+    where id = #{id}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="${package}.${moduleName}.model.${className}">
+    update ${tableName}
+    set 
+     #foreach($column in $columns)
+     #if($foreach.hasNext)
+    	 ${column.columnName} = #{${column.attrname}},
+     #else
+    	 ${column.columnName} = #{${column.attrname}}
+     #end
+       
+	#end
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+ </mapper>

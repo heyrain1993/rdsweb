@@ -3,18 +3,19 @@
 <mapper namespace="com.heyu.rdsweb.dao.SysUserDao">
   <resultMap id="BaseResultMap" type="com.heyu.rdsweb.model.SysUser">
     <id column="u_id" jdbcType="VARCHAR" property="id" />
-    <result column="u_real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="u_username" jdbcType="VARCHAR" property="username" />
-    <result column="u_password" jdbcType="VARCHAR" property="password" />
-    <result column="u_portrait" jdbcType="VARCHAR" property="portrait" />
-    <result column="u_salt" jdbcType="VARCHAR" property="salt" />
-    <result column="u_email" jdbcType="VARCHAR" property="email" />
-    <result column="u_phone" jdbcType="VARCHAR" property="phone" />
-    <result column="u_create_date" jdbcType="TIMESTAMP" property="createDate" />
-   <!--  <result column="u_update_by" jdbcType="VARCHAR" property="updateBy.id" /> -->
-    <result column="u_update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="u_remark" jdbcType="VARCHAR" property="remark" />
-    <result column="u_del_flag" jdbcType="VARCHAR" property="delFlag" />
+	    <result column="u_real_name" jdbcType="VARCHAR" property="realName" />
+	    <result column="u_username" jdbcType="VARCHAR" property="username" />
+	    <result column="u_password" jdbcType="VARCHAR" property="password" />
+	    <result column="u_portrait" jdbcType="VARCHAR" property="portrait" />
+	    <result column="u_salt" jdbcType="VARCHAR" property="salt" />
+	    <result column="u_email" jdbcType="VARCHAR" property="email" />
+	    <result column="u_phone" jdbcType="VARCHAR" property="phone" />
+	     <result column="u_create_by" jdbcType="VARCHAR" property="createBy.id" />
+	    <result column="u_create_date" jdbcType="TIMESTAMP" property="createDate" />
+	    <result column="u_update_by" jdbcType="VARCHAR" property="updateBy.id" />
+	    <result column="u_update_date" jdbcType="TIMESTAMP" property="updateDate" />
+	    <result column="u_remark" jdbcType="VARCHAR" property="remark" />
+	    <result column="u_del_flag" jdbcType="VARCHAR" property="delFlag" />
     <!--<association  property="createBy" javaType="com.heyu.rdsweb.model.SysUser" >
     	<id property="id" column="u_create_by"/>
     </association>-->
@@ -23,10 +24,20 @@
     </association>-->
   </resultMap>
   <sql id="Base_Column_List">
-    u.id as u_id, u.real_name as u_real_name, u.username as u_username, u.password as u_password, 
-    u.portrait as u_portrait, u.salt as u_salt, u.email as u_email, u.phone as u_phone, 
-    u.create_by as u_create_by, u.create_date as u_create_date, u.update_by as u_update_by, 
-    u.update_date as u_update_date, u.remark as u_remark, u.del_flag as u_del_flag
+    u.id as u_id, 
+    u.real_name as u_real_name,
+    u.username as u_username, 
+    u.password as u_password, 
+    u.portrait as u_portrait, 
+    u.salt as u_salt, 
+    u.email as u_email, 
+    u.phone as u_phone, 
+    u.create_by as u_create_by, 
+    u.create_date as u_create_date, 
+    u.update_by as u_update_by, 
+    u.update_date as u_update_date, 
+    u.remark as u_remark, 
+    u.del_flag as u_del_flag
   </sql>
   
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -70,16 +81,36 @@
   </delete>
   
   <insert id="insert" parameterType="com.heyu.rdsweb.model.SysUser">
-    insert into sys_user (id, real_name, username, 
-      password, portrait, salt, 
-      email, phone, create_by, 
-      create_date, update_by, update_date, 
-      remark, del_flag)
-    values (#{id,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{portrait,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{createBy.id,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{updateBy.id,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR})
+    insert into sys_user (	
+    	id, 
+    	real_name, 
+    	username, 
+    	password, 
+    	portrait, 
+    	salt, 
+        email, 
+        phone, 
+        create_by, 
+        create_date, 
+        update_by, 
+        update_date, 
+        remark, 
+        del_flag)
+    values (
+    	#{id,jdbcType=VARCHAR}, 
+    	#{realName,jdbcType=VARCHAR},
+    	#{username,jdbcType=VARCHAR}, 
+        #{password,jdbcType=VARCHAR}, 
+        #{portrait,jdbcType=VARCHAR}, 
+        #{salt,jdbcType=VARCHAR}, 
+        #{email,jdbcType=VARCHAR}, 
+        #{phone,jdbcType=VARCHAR}, 
+        #{createBy.id,jdbcType=VARCHAR}, 
+        #{createDate,jdbcType=TIMESTAMP}, 
+        #{updateBy.id,jdbcType=VARCHAR}, 
+        #{updateDate,jdbcType=TIMESTAMP}, 
+        #{remark,jdbcType=VARCHAR}, 
+        #{delFlag,jdbcType=VARCHAR})
   </insert>
   
   <insert id="insertSelective" parameterType="com.heyu.rdsweb.model.SysUser">

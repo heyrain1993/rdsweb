@@ -24,6 +24,10 @@ public class SysUser extends DataEntity {
 
     private String phone;
 
+    private SysUser createBy;
+    
+    private SysUser updateBy;
+    
     public String getRealName() {
         return realName;
     }
@@ -83,5 +87,21 @@ public class SysUser extends DataEntity {
     public SysUser() {
     	super();
     }
+
+	public SysUser getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(SysUser createBy) {
+		this.createBy = createBy;
+	}
+
+	public SysUser getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(SysUser updateBy) {
+		this.updateBy = updateBy;
+	}
 
 }
