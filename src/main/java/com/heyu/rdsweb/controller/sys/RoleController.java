@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.heyu.framework.BaseController;
-import com.heyu.framework.entity.Page;
+
+import com.heyu.framework.controller.BaseController;
+import com.heyu.framework.model.Page;
 import com.heyu.rdsweb.model.Role;
 import com.heyu.rdsweb.service.sys.RoleService;
 
@@ -21,6 +22,13 @@ public class RoleController extends BaseController{
 	
 	@Autowired
 	private RoleService roleService;
+	
+	@RequestMapping()
+	public String get(@RequestParam(value="id")String id,Model model) {
+		Role role = roleService.findById(id);
+		model.addAttribute("role", role);
+		return "admin/sys/roleForm";
+	}
 	
 	/**
 	 * 根据条件分页查询

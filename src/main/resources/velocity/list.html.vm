@@ -46,9 +46,9 @@
 							<table class="table table-hover table-striped">
 								<thead>
 									<tr>
-										#foreach($column in $columns)
+										#foreach( $column in $columns )
 										<th>${column.comment}</th>
-										#if($velocityCount==3)
+										#if( $velocityCount==3 )
 										#break
 										#end
 										#end
@@ -58,16 +58,16 @@
 								</thead>
 								<tbody>
 									<tr th:each="${classname}: ${page.list}">
-										#foreach($column in $columns)
-										<td th:text="${${classname}.column.attrname}">1</td>
-										#if($velocityCount==3)
+										#foreach( $column in $columns )
+										<td th:text="${${classname}.${column.attrname}}">1</td>
+										#if( $velocityCount==3 )
 										#break
 										#end
 										#end
 										<td
-											th:text="${#dates.format(user.createDate,'yyyy-MM-dd HH:mm:ss')}">Default</td>
+											th:text="${#dates.format( ${classname}.createDate ,'yyyy-MM-dd HH:mm:ss')}">Default</td>
 										<td><a type="button" class="btn btn-primary"
-											th:href="@{'/gencode/tableInfo?tableName=' + ${user.id}}">详情</a></td>
+											th:href="@{'/gencode/tableInfo?id=' + ${${classname}.id}}">详情</a></td>
 									</tr>
 
 								</tbody>
@@ -83,6 +83,5 @@
 
 	</div>
 	<script type="text/javascript" th:src="@{/js/defined/page.js}"></script>
-
 </body>
 </html>

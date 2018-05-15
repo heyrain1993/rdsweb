@@ -70,7 +70,7 @@ public class CodeGeneratorService {
 		for(ColumnEntity column:columns) {
 			column.setAttrname(StringUtils.underlineToHump(column.getColumnName()));
 			column.setAttrName(StringUtils.firstToUpper(StringUtils.underlineToHump(column.getColumnName())));
-			column.setAttrType(PropertiesUtils.getString(column.getColumnType(), "generateProp.properties"));
+			column.setAttrType(PropertiesUtils.getString(column.getDataType(), "generateProp.properties"));
 		}
 		
 		VelocityEngine engine = new VelocityEngine();
@@ -91,7 +91,6 @@ public class CodeGeneratorService {
 		map.put("author", config.getAuthor());
 		map.put("datetime",DateUtils.format(new Date(),DateUtils.DATE_TIME_PATTERN));
 		VelocityContext context = new VelocityContext(map);
-		
 		List<String> templates = new ArrayList<>();
 		
 		templates.add("velocity/Entity.java.vm");
@@ -103,8 +102,11 @@ public class CodeGeneratorService {
 		templates.add("velocity/form.html.vm");
 		for(String template:templates) {
 			StringWriter writer = new StringWriter();
-			Template  t = engine.getTemplate(template);
+			Template  t = engine.getTemplate(template, "UTF-8");
 			t.merge(context, writer);
+			if("velocity/form.html.vm".equals(template)) {
+				System.out.println(writer.toString());
+			}
 			try {
 				//添加到zip
 				zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), 
@@ -125,7 +127,7 @@ public class CodeGeneratorService {
 		}
 
 		if (template.contains("Entity.java.vm" )) {
-			return packagePath + "entity" + File.separator + className + "Entity.java";
+			return packagePath + "model" + File.separator + className + ".java";
 		}
 
 		if (template.contains("Dao.java.vm" )) {
@@ -146,12 +148,12 @@ public class CodeGeneratorService {
 
 		if (template.contains("list.html.vm" )) {
 			return "src"+ File.separator + "main" + File.separator + "resources" + File.separator + "templates" + File.separator
-					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + ".html";
+					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + "List.html";
 		}
 
 		if (template.contains("form.html.vm" )) {
 			return "src"+ File.separator + "main" + File.separator + "resources" + File.separator + "templates" + File.separator 
-					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + ".html";
+					+ "modules" + File.separator + moduleName + File.separator + className.toLowerCase() + "Form.html";
 		}
 
 		return null;

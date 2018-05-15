@@ -1,7 +1,7 @@
 package com.heyu.rdsweb.model;
 
 
-import com.heyu.framework.entity.DataEntity;
+import com.heyu.framework.model.DataEntity;
 
 public class SysUser extends DataEntity {
 	

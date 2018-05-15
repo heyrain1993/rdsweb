@@ -2,10 +2,10 @@ package com.heyu.rdsweb.dao;
 
 import java.util.List;
 
-import com.heyu.framework.entity.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.heyu.framework.model.Page;
 import com.heyu.rdsweb.model.SysUser;
 
 @Mapper

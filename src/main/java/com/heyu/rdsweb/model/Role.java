@@ -2,7 +2,7 @@ package com.heyu.rdsweb.model;
 
 import javax.validation.constraints.NotBlank;
 
-import com.heyu.framework.entity.DataEntity;
+import com.heyu.framework.model.DataEntity;
 
 public class Role extends DataEntity<Role>{
 

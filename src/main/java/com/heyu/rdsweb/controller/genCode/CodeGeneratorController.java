@@ -80,9 +80,8 @@ public class CodeGeneratorController {
 	@RequestMapping(value = "download", method = RequestMethod.POST)
 	public void download(@RequestParam("tableName")String tableName,GeneratorConfig config,
 			HttpServletRequest request,HttpServletResponse response) {
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(64);
 		ZipOutputStream zip = new ZipOutputStream(outputStream);
-		
 		codeGeneratorService.download(tableName,config,zip);
 		IOUtils.closeQuietly(zip);
 		response.reset();  
