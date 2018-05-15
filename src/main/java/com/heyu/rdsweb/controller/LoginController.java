@@ -1,4 +1,4 @@
-package com.heyu.rdsweb.controller.sys;
+package com.heyu.rdsweb.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +12,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.heyu.rdsweb.model.SysUser;
+
+import com.heyu.framework.model.SysUser;
 
 @Controller
 public class LoginController {

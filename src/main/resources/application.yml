@@ -12,8 +12,9 @@ spring:
     default-property-inclusion: non-null 
 mybatis:  #加载mybatis配置文件
   mapper-locations: classpath*:mybatis/*.xml
-  type-aliases-package: com.heyu.rdsweb.model
+  type-aliases-package: com.heyu.*.model
   
 logging:
   level: #设置执行的SQL在控制台打印
+    com.heyu.framework.dao: DEBUG
     com.heyu.rdsweb.dao: DEBUG
