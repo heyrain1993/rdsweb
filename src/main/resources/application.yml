@@ -9,7 +9,18 @@ spring:
       ddl-auto: update #设置建表策略；create：每次启动都会创建表，会删除已存在的表；update：如果有数据就不会创建，否则创建
     show-sql: true #执行SQL时，会在控制台显示
   jackson: #配置实体类中为null的字段在json中不返回
-    default-property-inclusion: non-null 
+    default-property-inclusion: non-null
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1
+    timeout: 0
+
 mybatis:  #加载mybatis配置文件
   mapper-locations: classpath*:mybatis/*.xml
   type-aliases-package: com.heyu.*.model
@@ -18,3 +29,4 @@ logging:
   level: #设置执行的SQL在控制台打印
     com.heyu.framework.dao: DEBUG
     com.heyu.rdsweb.dao: DEBUG
+
