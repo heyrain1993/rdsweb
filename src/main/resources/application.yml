@@ -18,8 +18,8 @@ spring:
         max-active: 8
         min-idle: 0
         max-idle: 8
-        max-wait: -1
-    timeout: 0
+        max-wait: -1 #负值表示没有限制
+    timeout: 5000
 
 mybatis:  #加载mybatis配置文件
   mapper-locations: classpath*:mybatis/*.xml
